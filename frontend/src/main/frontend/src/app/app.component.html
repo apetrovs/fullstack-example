@@ -1,0 +1,72 @@
+<simple-notifications></simple-notifications>
+
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Full stack live coding exercise</h2>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <form (submit)="search($event)" class="card p-2">
+        <div class="input-group">
+          <input (input)="queryString = $event.target.value" required type="text" class="form-control" placeholder="Query">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">Search</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" [hidden]="!searchInProgress">
+    <div class="col">
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="1" style="width: 100%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+            <table class="table table-striped">
+        <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Creation date</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of result.items">
+          <td>
+            <span [hidden]="!item.answered" class="oi oi-check" title="Answered"></span>
+          </td>
+          <td>{{item.title}}</td>
+          <td>{{item.author}}</td>
+          <th scope="row">{{(item.creationDate * 1000) | date : 'dd.MM.yyyy' }}  </th>
+          <td>
+            <a target="_blank" href="{{item.link}}">
+              <span class="oi oi-link-intact" title="Go to Stackoverflow"></span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row" [hidden]="result.items.length == 0">
+    <div class="col">
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item" [ngClass]="{'disabled': page == 1}"><a class="page-link" href="#" (click)="prev()">Previous</a></li>
+          <li class="page-item" [ngClass]="{'disabled': !result.hasMore}"><a class="page-link" href="#" (click)="next()">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</div>
