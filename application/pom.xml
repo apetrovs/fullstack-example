@@ -33,7 +33,7 @@
     </dependencies>
 
     <build>
-        <finalName>applicationофмф </finalName>
+        <finalName>application</finalName>
 
         <plugins>
             <plugin>
