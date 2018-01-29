@@ -6,3 +6,4 @@
 #### How to run:
 1. Build app with `mvn clean install`
 2. Run app with `java -jar application/target/application.jar`
+3. Open `http://localhost:8080` in your browser
